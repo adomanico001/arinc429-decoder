@@ -4,3 +4,7 @@ add_library(arinc429 src/placeholder.cpp)
 target_include_directories(arinc429 PUBLIC include)
 target_compile_features(arinc429 PUBLIC cxx_std_17)
 target_compile_options(arinc429 PRIVATE -Wall -Wextra -Wpedantic)
+add_executable(arinc429_cli cli/main.cpp cli/table_printer.cpp)
+target_link_libraries(arinc429_cli PRIVATE arinc429)
+target_compile_options(arinc429_cli PRIVATE -Wall -Wextra -Wpedantic)
+
