@@ -37,12 +37,14 @@ Labels are always displayed as three-digit octal numbers, for example `203`.
 ## Label Bit Order
 
 *To be decided in Step 4*
+
 Open question: does the capture format store the label bits in transmitted order or reversed? The decoder must state which it expects and, ideally, support both.
 
 
-# Byte Order
+## Byte Order
 
 *To be decided in Step 8*
+
 Open question: in a binary capture file, in what order are the 4 bytes of each word stored (little-endian or big-endian)?
 
 
