@@ -1,7 +1,7 @@
 # ARINC 429 Decoder
 
 A command-line tool and C++17 library that decodes and encodes ARINC 429 avionics data words, with parity, status (SSM), and range validation.
-    **Status:** In development. The build system, test framework, and project layout are in place. Decoding features are being added one milestone at a time (see [Roadmap](#roadmap)).
+> **Status:** In development. The build system, test framework, and project layout are in place. Decoding features are being added one milestone at a time (see [Roadmap](#roadmap)).
     
 ## About
 
