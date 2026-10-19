@@ -60,5 +60,12 @@ Open question: in a binary capture file, in what order are the 4 bytes of each w
 | Namespace | `arinc429` | |
 | CMake targets | library `arinc429`, program `arinc429_cli`, tests `arinc429_tests` | |
 | Indentation | 4 spaces, no tabs | |
+| Function names | lowercase `snake_case`, lowercase acronyms | `extract_sdi` |
+| Parameter and variable names | lowercase `snake_case` | `word` |
+| Type names | PascalCase | `Word` |
+| Header guards | `PROJECT_FILE_EXTENSION` in capitals | `ARINC429_FIELD_EXTRACTION_HPP` |
+| Header style | header guard; includes; `namespace arinc429` | |
+| Includes | `<>` for standard library headers, `""` for project headers | `<cstdint>`, `"arinc429/field_extraction.hpp"` |
+
 
 Public headers live in `include/arinc429/` and are included with the project prefix, for example `arinc429/field_extraction.hpp`.

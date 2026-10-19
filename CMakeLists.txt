@@ -12,7 +12,7 @@ FetchContent_MakeAvailable(googletest)
 # CMake's testing infrastructure
 enable_testing()
 
-add_library(arinc429 src/placeholder.cpp)
+add_library(arinc429 src/field_extraction.cpp)
 target_include_directories(arinc429 PUBLIC include)
 target_compile_features(arinc429 PUBLIC cxx_std_17)
 target_compile_options(arinc429 PRIVATE -Wall -Wextra -Wpedantic)
