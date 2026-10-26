@@ -2,7 +2,7 @@
 
 namespace arinc429 {
     Word extract_label(Word word) {
-        return 0;
+        return word & 0xFF;
     }
     
     Word extract_sdi(Word word) {

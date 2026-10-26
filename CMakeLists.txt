@@ -21,7 +21,7 @@ add_executable(arinc429_cli cli/main.cpp cli/table_printer.cpp)
 target_link_libraries(arinc429_cli PRIVATE arinc429)
 target_compile_options(arinc429_cli PRIVATE -Wall -Wextra -Wpedantic)
 
-add_executable(arinc429_tests tests/sanity_test.cpp)
+add_executable(arinc429_tests tests/sanity_test.cpp tests/field_extraction_test.cpp)
 target_link_libraries(arinc429_tests PRIVATE arinc429 GTest::gtest_main)
 target_compile_options(arinc429_tests PRIVATE -Wall -Wextra -Wpedantic)
 
