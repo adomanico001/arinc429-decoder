@@ -66,6 +66,11 @@ Open question: in a binary capture file, in what order are the 4 bytes of each w
 | Header guards | `PROJECT_FILE_EXTENSION` in capitals | `ARINC429_FIELD_EXTRACTION_HPP` |
 | Header style | header guard; includes; `namespace arinc429` | |
 | Includes | `<>` for standard library headers, `""` for project headers | `<cstdint>`, `"arinc429/field_extraction.hpp"` |
+| Hex literals | uppercase letters after `0x` | `0xFF`, `0x7FFFF` |
+| Unsigned literals | `u` suffix when compared with or combined with unsigned values | `0x83u`, `0u` |
+| Field extraction | shift right first,, then mask; shift = start bit -1, mask = field width in 1s | `(word >> 8) & 0x3` |
+| Test constants | one named `const arinc429::Word` per test word, declared at the top of the test file | `altitude_35000_ft` |
+| Test names | suite = component (`FieldExtraction`), name = behavior being checked | `ExtractsLabel` |
 
 
 Public headers live in `include/arinc429/` and are included with the project prefix, for example `arinc429/field_extraction.hpp`.
