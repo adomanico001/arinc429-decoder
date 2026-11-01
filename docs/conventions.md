@@ -36,10 +36,9 @@ Labels are always displayed as three-digit octal numbers, for example `203`.
 
 ## Label Bit Order
 
-*To be decided in Step 4*
+Labels are stored in **normal reading order**: bit 8 holds the label's most significant bit and bit 1 holds its least significant bit. Reading bits 8 to 1 as a binary number gives the label value directly, so `extract_label` returns the label number with no further conversion. For example, the low byte `0x83` (`10000011`) is label 203 in octal.
 
-Open question: does the capture format store the label bits in transmitted order or reversed? The decoder must state which it expects and, ideally, support both.
-
+On the wire, ARINC 429 transmits the label most significant bit first, so some interface hardware stores labels in reversed order (bit 1 holds the most significant bit). Captures from such hardware must be converted with `reverse_label_bits` before decoding. In reversed order, label 203 appears as `0xC1` (`11000001`).
 
 ## Byte Order
 
