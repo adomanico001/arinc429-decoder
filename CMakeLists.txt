@@ -12,7 +12,7 @@ FetchContent_MakeAvailable(googletest)
 # CMake's testing infrastructure
 enable_testing()
 
-add_library(arinc429 src/field_extraction.cpp)
+add_library(arinc429 src/field_extraction.cpp src/parity.cpp)
 target_include_directories(arinc429 PUBLIC include)
 target_compile_features(arinc429 PUBLIC cxx_std_17)
 target_compile_options(arinc429 PRIVATE -Wall -Wextra -Wpedantic)
@@ -21,7 +21,7 @@ add_executable(arinc429_cli cli/main.cpp cli/table_printer.cpp)
 target_link_libraries(arinc429_cli PRIVATE arinc429)
 target_compile_options(arinc429_cli PRIVATE -Wall -Wextra -Wpedantic)
 
-add_executable(arinc429_tests tests/sanity_test.cpp tests/field_extraction_test.cpp)
+add_executable(arinc429_tests tests/sanity_test.cpp tests/field_extraction_test.cpp tests/parity_test.cpp)
 target_link_libraries(arinc429_tests PRIVATE arinc429 GTest::gtest_main)
 target_compile_options(arinc429_tests PRIVATE -Wall -Wextra -Wpedantic)
 
