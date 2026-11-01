@@ -80,7 +80,7 @@ The decoder logic lives in a library (`arinc429`) so the command-line program an
 
 - [x] Project skeleton: CMake build, GoogleTest, folder layout
 - [x] Represent a word and extract its fields
-- [ ] Check parity
+- [x] Check parity
 - [ ] Convert and display labels in octal
 - [ ] Decode BNR values
 - [ ] Decode BCD values
