@@ -82,7 +82,7 @@ The decoder logic lives in a library (`arinc429`) so the command-line program an
 - [x] Represent a word and extract its fields
 - [x] Check parity
 - [x] Convert and display labels in octal
-- [ ] Decode BNR values
+- [x] Decode BNR values
 - [ ] Decode BCD values
 - [ ] Load the label database
 - [ ] Read binary and hex-text capture files
