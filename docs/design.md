@@ -16,6 +16,7 @@ The code is split into a reusable library (`arinc429`), a command-line program (
 | Parity | `parity.hpp/.cpp` | Checks whether a word has odd parity across all 32 bits |
 | Label | `label.hpp/.cpp` | Reverses label bit order and formats labels as three-digit octal text |
 | BNR decoder | `bnr_decoder.hpp/cpp` | Converts a BNR data field into an engineering value using the label's significant bits and resolution |
+| BCD decoder | `bcd_decoder.hpp/cpp` | Validates BCD digits and converts a BCD data field into an engineering value using the label's digit count and resolution |
 
 Planned components: BCD decoding, a label database, capture file reading, an encoder, and table, CSV, and summary output.
 
@@ -47,6 +48,12 @@ Decoded values can be negative or fractional, depending on the label's resolutio
 
 ### Tests use boundary values
 Each component is tested with a known real example plus boundary cases chosen to expose specific bugs: all zeros, all ones, single-field words for extraction, single and double bit flips for parity, and zero, minus one, and both range extremes for BNR. Each test has a constant input with a descriptive name and a test name describing the expected behavior.
+
+### BCD validation is separate from BCD decoding
+`has_vaild_bcd_digits` checks that every digit used by a label is between 0 and 9, while `decode_bcd` converts the digits to a value and assumes they are valid. This follows the same principle as keeping field extraction separate from validation: each function has one job, which keeps both simpler to write and test. Callers are expected to check validity before decoding. Both functions take a digit count so that only the digits a label uses are checked or decoded; unused padding digits at the bottom of the field are ignored.
+
+### Every BCD digit is extracted with the same 4-bit mask
+Each digit is extracted by shifting the data field right (16, 12, 8, 4, then 0 bits) and masking with `0xF`. The most significant digit is only 3 bits wide, but the 4-bit mask is still safe for it: the data field is already limited to 19 bits by `extract_data`, so the bit above the top digit is always 0. Using one mask for every digit keeps the loop simple and identical in `decode_bcd` and `has_valid_bcd_digits`.
 
 ## Known Limitations
 
