@@ -1,7 +1,10 @@
 #ifndef ARINC429_LABEL_DATABASE_HPP
 #define ARINC429_LABEL_DATABASE_HPP
 
+#include <cstddef>
 #include <cstdint>
+#include <map>
+#include <optional>
 #include <string>
 
 namespace arinc429 {
@@ -18,9 +21,16 @@ namespace arinc429 {
         std::string units;
     };
 
+    class LabelDatabase {
+        public:
+            bool add(const LabelDefinition& definition);
+            std::optional<LabelDefinition> find(std::uint8_t label) const;
+            std::size_t size() const;
+    
+        private:
+            std::map<std::uint8_t, LabelDefinition> definitions_;
+    };
 }
-
-
 
 #endif
 
