@@ -55,6 +55,12 @@ Each component is tested with a known real example plus boundary cases chosen to
 ### Every BCD digit is extracted with the same 4-bit mask
 Each digit is extracted by shifting the data field right (16, 12, 8, 4, then 0 bits) and masking with `0xF`. The most significant digit is only 3 bits wide, but the 4-bit mask is still safe for it: the data field is already limited to 19 bits by `extract_data`, so the bit above the top digit is always 0. Using one mask for every digit keeps the loop simple and identical in `decode_bcd` and `has_valid_bcd_digits`.
 
+### Label definitions are stored in a CSV file
+Each label's details (number, name, encoding, significant bits or digit count, resolution and units) are stored in `data/labels.csv`, one label per line, rather than hard-coded in C++. Keeping definitions in data means labels can be added or corrected without changing or recompiling code. CSV was chosen JSON because it needs no third-party library to read, and it can be opened and edited in any spreadsheet program. Label numbers are written in octal in the file, matching how engineers write them.
+
+### Errors are reported without exceptions
+The decoder does not use C++ exceptions. Many safety-critical C++ coding standards, such as the JSF Air Vehicle C++ Coding Standards, prohibit exceptions because the control flow they create is difficult to analyze and verify. Instead, functions that return a result which may be missing, such as looking up an unknown label, return a `std::optional`, which holds either the result or nothing. Functions that only need to report success or failure return a `bool`. Callers must check these results before using them.
+
 ## Known Limitations
 
 ### BNR decoder does  not validate its parameters
